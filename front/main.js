@@ -2,5 +2,5 @@
 
 	function myFunction()
 	{
-		console.log('click');
+		document.getElementById("demo").innerHTML = "click";
 	}
