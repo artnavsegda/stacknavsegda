@@ -1,4 +1,5 @@
 var data = new TimeSeries();
+var xhttp = new XMLHttpRequest();
 
 function createTimeline()
 {
@@ -9,5 +10,7 @@ function createTimeline()
 
 function myFunction()
 {
-  data.append(new Date().getTime(), Math.random());
+  xhttp.open("GET", "cgi-bin/engine.bin", false);
+	xhttp.send();
+  data.append(new Date().getTime(), xhttp.responseText);
 }
