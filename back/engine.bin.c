@@ -21,7 +21,7 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	printf("Content-type: text/plain\n\n");
-	printf("%d\n",i2c_smbus_read_byte_data(fd,0x00));
+	printf("%d",i2c_smbus_read_word_data(fd,0x00));
 	close(fd);
 	return 0;
 }
