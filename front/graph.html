@@ -8,6 +8,7 @@
 		<script src="smoothie.js"></script>
 		<script src="graph.js"></script>
 		<canvas id="chart" width="400" height="100"></canvas>
-		<button onclick="myFunction()">button</button>
+		<button onclick="myFunction()">once</button>
+		<button onclick="setInterval(function(){myFunction()}, 1000)">interval</button>
 	</body>
 </html>
