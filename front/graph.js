@@ -15,3 +15,15 @@ function myFunction()
 	document.getElementById("demo").innerHTML = xhttp.responseText;
 	data.append(new Date().getTime(), xhttp.responseText);
 }
+
+function myUp()
+{
+	xhttp.open("GET", "cgi-bin/control.bin?64", false);
+	xhttp.send();
+}
+
+function myDown()
+{
+	xhttp.open("GET", "cgi-bin/control.bin?128", false);
+	xhttp.send();
+}
