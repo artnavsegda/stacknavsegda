@@ -10,7 +10,7 @@ function createTimeline()
 
 function myFunction()
 {
-  xhttp.open("GET", "cgi-bin/engine.bin", false);
+  xhttp.open("GET", "cgi-bin/engine.bin?0", false);
 	xhttp.send();
   data.append(new Date().getTime(), xhttp.responseText);
 }
