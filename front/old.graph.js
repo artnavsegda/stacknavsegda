@@ -5,31 +5,26 @@ var dogbbq = [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]
 
 function createTimeline()
 {
- var chart = new SmoothieChart({millisPerPixel:100,maxValue:7000,minValue:5000,grid:{millisPerLine:5000,verticalSections:10,strokeStyle:'#202020'},interpolation:'linear'});
- //var chart = new SmoothieChart({millisPerPixel:100,maxValue:7000,minValue:5000,grid:{millisPerLine:5000,verticalSections:10,strokeStyle:'#202020'}});
+  var chart = new SmoothieChart({millisPerPixel:100,maxValue:7000,minValue:5000,grid:{millisPerLine:10000,verticalSections:10,strokeStyle:'#000000'}});
   //var chart = new SmoothieChart({millisPerPixel:100,grid:{millisPerLine:10000,verticalSections:10,strokeStyle:'#000000'}});
-  chart.addTimeSeries(data2,{strokeStyle:'rgb(200,0,0)'});
-  chart.addTimeSeries(data,{lineWidth:2});
+  chart.addTimeSeries(data,{strokeStyle:'rgb(0,255,0)'});
+  chart.addTimeSeries(data2);
   chart.streamTo(document.getElementById("chart"), 1000);
 
   myFunction2();
-  setInterval(function(){myFunction()}, 500);
-  setInterval(function(){myFunction3()}, 100);
+  setInterval(function(){myFunction()}, 100);
 }
 
 function myFunction()
 {
 	xhttp.open("POST", "cgi-bin/engine.bin?9", false);
 	xhttp.send();
-	document.getElementById("demo").innerHTML = xhttp.responseText-0x17CC;
+	//document.getElementById("demo").innerHTML = xhttp.responseText;
 	data.append(new Date().getTime(), xhttp.responseText);
-}
 
-function myFunction3()
-{
 	xhttp.open("POST", "cgi-bin/engine.bin?8", false);
 	xhttp.send();
-	//document.getElementById("demo2").innerHTML = xhttp.responseText;
+	document.getElementById("demo").innerHTML = xhttp.responseText;
 	data2.append(new Date().getTime(), xhttp.responseText);
 }
 
