@@ -47,7 +47,7 @@ function myDown()
 
 function myFunction2()
 {
-	xhttp.open("POST", "cgi-bin/runner.bin", false);
+	xhttp.open("POST", "cgi-bin/runner.bin?150", false);
 	xhttp.send();
 	var arava = JSON.parse(xhttp.responseText);
   for (i = 0; i < 100; i++)
