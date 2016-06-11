@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
 	printf("Content-type: text/plain\n\n");
 	printf("[");
 	for (i=x; i<x+100; i++)
-		printf("%d, ",i2c_smbus_read_word_data(fd,i+x));
+		printf("%d, ",i2c_smbus_read_word_data(fd,i));
 	printf("%d",i2c_smbus_read_word_data(fd,x+100));
 	printf("]");
 	close(fd);
