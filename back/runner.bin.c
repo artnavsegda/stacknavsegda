@@ -20,12 +20,13 @@ int main(int argc, char *argv[])
 		printf("ioctl error\n");
 		exit(1);
 	}
-	int i;
+	int i,x;
+	sscanf(getenv("QUERY_STRING"),"%d",&x);
 	printf("Content-type: text/plain\n\n");
 	printf("[");
-	for (i=0; i<100; i++)
-		printf("%d, ",i2c_smbus_read_word_data(fd,i+100));
-	printf("%d",i2c_smbus_read_word_data(fd,200));
+	for (i=x; i<x+100; i++)
+		printf("%d, ",i2c_smbus_read_word_data(fd,i+x));
+	printf("%d",i2c_smbus_read_word_data(fd,x+100));
 	printf("]");
 	close(fd);
 	return 0;
