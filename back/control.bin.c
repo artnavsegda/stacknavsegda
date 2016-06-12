@@ -21,9 +21,9 @@ int main(int argc, char *argv[])
 		exit(1);
 	}
 	i2c_smbus_write_byte_data(fd,0x03,0x3F);
-	unsigned char i;
-	sscanf(getenv("QUERY_STRING"),"%d",&i);
-	i2c_smbus_write_byte_data(fd,0x01,i);
+	unsigned char cmd;
+	sscanf(getenv("QUERY_STRING"),"%d",&cmd);
+	i2c_smbus_write_byte_data(fd,0x01,cmd);
 	printf("Content-type: text/plain\n\n");
 	//printf("%d",i2c_smbus_read_byte_data(fd,i));
 	close(fd);
