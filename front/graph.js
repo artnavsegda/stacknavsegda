@@ -5,7 +5,7 @@ var dogbbq = [0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1,0,1]
 
 function createTimeline()
 {
- var chart = new SmoothieChart({millisPerPixel:100,maxValue:7000,minValue:5000,grid:{millisPerLine:5000,verticalSections:10,strokeStyle:'#202020'},interpolation:'linear'});
+ var chart = new SmoothieChart({millisPerPixel:100,maxValue:7000,minValue:5000,grid:{millisPerLine:5000,verticalSections:10,strokeStyle:'#202020',sharpLines:true},interpolation:'linear'});
  //var chart = new SmoothieChart({millisPerPixel:100,maxValue:7000,minValue:5000,grid:{millisPerLine:5000,verticalSections:10,strokeStyle:'#202020'}});
   //var chart = new SmoothieChart({millisPerPixel:100,grid:{millisPerLine:10000,verticalSections:10,strokeStyle:'#000000'}});
   chart.addTimeSeries(data2,{strokeStyle:'rgb(200,0,0)'});
