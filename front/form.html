@@ -4,15 +4,18 @@
 		<link rel="stylesheet" href="main.css">
 	</head>
 	<body>
-		<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 		<script src="main.js"></script>
-            <form action="http://localhost/cgi-bin/printenv.pl" method="post">
-                First name:<br>
-                <input type="text" name="firstname" value="Mickey"><br>
-                Last name:<br>
-                <input type="text" name="lastname" value="Mouse"><br><br>
+            <form action="http://localhost/cgi-bin/printenv.pl" method="get">
+							Port:<br>
+							<input type="text" name="port" value="0"><br>
+							<select name="state2">
+								<option value="low">Low</option>
+								<option value="high" selected>High</option>
+							</select><br>
+							<input type="radio" name="state" value="low" checked>Low<br>
+						  <input type="radio" name="state" value="high">High<br>
+							<br>
                 <input type="submit" value="Submit">
-            </form> 
+            </form>
 	</body>
 </html>
-
