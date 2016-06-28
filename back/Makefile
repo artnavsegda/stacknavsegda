@@ -12,6 +12,6 @@ control.bin:	control.bin.o
 runner.bin:	runner.bin.o
 	gcc runner.bin.o -o runner.bin
 
-install:	engine.bin control.bin runner.bin
-	cp engine.bin control.bin runner.bin /usr/lib/cgi-bin
+install:	modbus.bin
+	cp modbus.bin /Library/Server/Web/Data/CGI-Executables/
 
