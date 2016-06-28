@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<script src="main.js"></script>
-            <form action="http://localhost/cgi-bin/printenv.pl" method="get">
+            <form action="http://localhost/cgi-bin/printenv.sh" method="post">
 							Port:<br>
 							<input type="text" name="port" value="0"><br>
 							<select name="state2">
@@ -15,6 +15,9 @@
 							<input type="radio" name="state" value="low" checked>Low<br>
 						  <input type="radio" name="state" value="high">High<br>
 							<br>
+							<input type="checkbox" name="bit0" value="high">0
+							<input type="checkbox" name="bit1" value="high">1
+							<br><br>
                 <input type="submit" value="Submit">
             </form>
 	</body>
