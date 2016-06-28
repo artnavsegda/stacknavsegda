@@ -12,13 +12,7 @@ int main(int argc, char *argv[])
 	int i;
 	int actual;
 
-	if (argc == 1)
-	{
-		printf("name ip adress\n");
-		exit(1);
-	}
-
-	mb = modbus_new_tcp(argv[1], 1502);
+	mb = modbus_new_tcp("192.168.1.120", 502);
 	if (modbus_connect(mb) == -1)
 	{
 		fprintf(stderr, "modbus connect: %s\n", modbus_strerror(errno));
