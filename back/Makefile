@@ -1,7 +1,10 @@
-all:	engine.bin control.bin runner.bin
+all:	engine.bin control.bin runner.bin modbus.bin
 
 engine.bin:	engine.bin.o
 	gcc engine.bin.o -o engine.bin
+
+modbus.bin: modbus.bin.c
+	cc `pkg-config --cflags --libs libmodbus` modbus.bin.c -o modbus.bin
 
 control.bin:	control.bin.o
 	gcc control.bin.o -o control.bin
