@@ -35,13 +35,13 @@ function myFunction3()
 
 function myUp()
 {
-	xhttp.open("POST", "cgi-bin/control.bin?128", false);
+	xhttp.open("POST", "cgi-bin/modset.bin?0", false);
 	xhttp.send();
 }
 
 function myDown()
 {
-	xhttp.open("POST", "cgi-bin/control.bin?64", false);
+	xhttp.open("POST", "cgi-bin/modset.bin?1", false);
 	xhttp.send();
 }
 
