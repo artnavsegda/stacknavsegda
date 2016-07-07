@@ -3,12 +3,13 @@
 require_once dirname(__FILE__) . '/../Phpmodbus/ModbusMaster.php';
 
 // Create Modbus object
-$ip = "192.168.1.120";
+//$ip = "192.168.1.120";
+$ip = "192.168.1.114";
 $modbus = new ModbusMaster($ip, "TCP");
 
 try {
     // FC 1
-    $coilData = $modbus->readCoils(0, 1, 5);
+    $coilData = $modbus->readCoils(0, 0, 5);
 }
 catch (Exception $e) {
     // Print error information if any
@@ -47,7 +48,7 @@ catch (Exception $e) {
     foreach($coilData as $bytes) {
         ?>
     <tr>
-        <td><?php echo $i+=1 ?></td>
+        <td><?php echo $i++ ?></td>
         <td><?php echo (var_export($bytes)) ?></td>
     </tr>
         <?php
@@ -58,7 +59,7 @@ catch (Exception $e) {
 
 try {
     // FC 3
-    $recData = $modbus->readMultipleRegisters(0, 8, 16);
+    $recData = $modbus->readMultipleRegisters(0, 8, 28);
 }
 catch (Exception $e) {
     echo $modbus;
@@ -104,30 +105,6 @@ $values = array_chunk($recData, 2);
             </tr>
                 <?php
             }
-
-
-            try {
-                // FC 3
-                $recData = $modbus->readMultipleRegisters(0, 28, 1);
-            }
-            catch (Exception $e) {
-                echo $modbus;
-                echo $e;
-                exit;
-            }
-
-            $values = array_chunk($recData, 2);
-
-            foreach($values as $bytes) {
-                ?>
-            <tr>
-                <td><?php echo 28 ?></td>
-                <td><?php echo PhpType::bytes2signedInt($bytes)?></td>
-            </tr>
-                <?php
-            }
-
-
 
             ?>
         </table>
