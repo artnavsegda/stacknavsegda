@@ -3,24 +3,22 @@
 require_once dirname(__FILE__) . '/../Phpmodbus/ModbusMaster.php';
 
 // Create Modbus object
-$ip = "192.192.15.51";
-$modbus = new ModbusMaster($ip, "UDP");
+$ip = "192.168.1.120";
+$modbus = new ModbusMaster($ip, "TCP");
 
 try {
-    // FC 3
-    $moduleId = 0;
-    $reference = 12288;
-    $mw0address = 12288;
-    $quantity = 6;
-    $recData = $modbus->readMultipleRegisters($moduleId, $reference, $quantity);
+    // FC 1
+    $coilData = $modbus->readCoils(0, 1, 5);
 }
 catch (Exception $e) {
+    // Print error information if any
     echo $modbus;
     echo $e;
     exit;
 }
 
 ?>
+
 <html>
     <head>
         <meta http-equiv="content-type" content="text/html; charset=windows-1250">
@@ -39,19 +37,124 @@ catch (Exception $e) {
 
         <h2>M-memory dump</h2>
 
+<table border="1px" width="400px">
+    <tr>
+        <td>Modbus address</td>
+        <td>value</td>
+    </tr>
+    <?php
+    $i = 0;
+    foreach($coilData as $bytes) {
+        ?>
+    <tr>
+        <td><?php echo $i+=1 ?></td>
+        <td><?php echo (var_export($bytes)) ?></td>
+    </tr>
+        <?php
+    }
+    ?>
+</table>
+<?php
+
+try {
+    // FC 3
+    $recData = $modbus->readMultipleRegisters(0, 8, 16);
+}
+catch (Exception $e) {
+    echo $modbus;
+    echo $e;
+    exit;
+}
+
+$floatvalues = array_chunk($recData, 4);
+$i = 6;
+$values = array_chunk($recData, 2);
+
+?>
+
         <table border="1px" width="400px">
             <tr>
                 <td>Modbus address</td>
-                <td>MWx</td>
                 <td>value</td>
             </tr>
             <?php
-            for($i=0;$i<count($recData);$i+=2) {
+            foreach($floatvalues as $bytes) {
                 ?>
             <tr>
-                <td><?php echo $i+$reference?></td>
-                <td>MW<?php echo ($i + $reference - $mw0address)/2?></td>
-                <td><?php echo ($recData[$i] << 8)+ $recData[$i+1]?></td>
+                <td><?php echo $i+=2?></td>
+                <td><?php echo PhpType::bytes2float($bytes)?></td>
+            </tr>
+                <?php
+            }
+            ?>
+        </table>
+
+        <table border="1px" width="400px">
+            <tr>
+                <td>Modbus address</td>
+                <td>value</td>
+            </tr>
+            <?php
+            $i = 7;
+            foreach($values as $bytes) {
+                ?>
+            <tr>
+                <td><?php echo $i+=1?></td>
+                <td><?php echo PhpType::bytes2signedInt($bytes)?></td>
+            </tr>
+                <?php
+            }
+
+
+            try {
+                // FC 3
+                $recData = $modbus->readMultipleRegisters(0, 28, 1);
+            }
+            catch (Exception $e) {
+                echo $modbus;
+                echo $e;
+                exit;
+            }
+
+            $values = array_chunk($recData, 2);
+
+            foreach($values as $bytes) {
+                ?>
+            <tr>
+                <td><?php echo 28 ?></td>
+                <td><?php echo PhpType::bytes2signedInt($bytes)?></td>
+            </tr>
+                <?php
+            }
+
+
+
+            ?>
+        </table>
+
+
+        <?php try {
+            // FC 3
+            $coilData = $modbus->readCoils(0, 99, 5);
+        }
+        catch (Exception $e) {
+            echo $modbus;
+            echo $e;
+            exit;
+        }?>
+
+        <table border="1px" width="400px">
+            <tr>
+                <td>Modbus address</td>
+                <td>value</td>
+            </tr>
+            <?php
+            $i = 98;
+            foreach($coilData as $bytes) {
+                ?>
+            <tr>
+                <td><?php echo $i+=1 ?></td>
+                <td><?php echo (var_export($bytes)) ?></td>
             </tr>
                 <?php
             }
@@ -64,4 +167,4 @@ catch (Exception $e) {
         ?>
 
     </body>
-</html> 
+</html>
