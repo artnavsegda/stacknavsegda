@@ -3,7 +3,9 @@
 require_once dirname(__FILE__) . '/../Phpmodbus/ModbusMaster.php';
 
 // Create Modbus object
-$modbus = new ModbusMaster("192.168.1.120", "TCP");
+//$modbus = new ModbusMaster("192.168.1.120", "TCP");
+$modbus = new ModbusMaster("192.168.1.110", "TCP");
+//$modbus = new ModbusMaster("127.0.0.1", "TCP");
 
 try {
     // FC 3
